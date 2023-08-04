@@ -14,4 +14,8 @@ Other oses are not compatible yet.
 go build .
 ```
 
+## Screnshots
+<img src="https://i.imgur.com/8nJu9Sj.png" width="600">
+
+
 Michal Hicz
