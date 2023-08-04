@@ -9,7 +9,7 @@ Launcher requires other files found only in downloaded zip file.*
 
 **Building only without files from zip wont start the game!**
 
-[Configuration]
+[Configuration]<br>
 Change nickname in username.txt file.
 
 ### Other OS
@@ -23,7 +23,7 @@ go build launcher/launcher.go
 go-winres patch launcher.exe
 ```
 
-## Screnshots
+## Screenshots
 <img src="https://i.imgur.com/8nJu9Sj.png" width="600">
 Screenshot from MacOS but launcher compatible only with Windows!
 
