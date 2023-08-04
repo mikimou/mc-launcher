@@ -2,7 +2,14 @@
 
 ![logo](https://i.imgur.com/ZTLvKhH.png)
 
-### build 
+## Installation
+### Windows
+Download latest release and run executable or build executable from code
+
+### Other OS
+Other oses are not compatible yet.
+
+## Build 
 ```
 go build .
 ```
