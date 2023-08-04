@@ -4,7 +4,7 @@
 
 ## Installation
 ### Windows
-Download latest release and run executable or build executable from code
+Download launcher-windows.zip from latest release and run executable or build executable from code
 
 ### Other OS
 Other oses are not compatible yet.
