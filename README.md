@@ -15,6 +15,6 @@ go build .
 ```
 
 ## Screnshots
-![screen](https://i.imgur.com/8nJu9Sj.png)
+![screen](https://i.imgur.com/8nJu9Sj.png|width=200)
 
 Michal Hicz
