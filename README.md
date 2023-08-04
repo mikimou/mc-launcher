@@ -25,7 +25,7 @@ go-winres patch launcher.exe
 
 ## Screnshots
 <img src="https://i.imgur.com/8nJu9Sj.png" width="600">
-Screenshow from MacOS but launcher compatible only with Windows!
+Screenshot from MacOS but launcher compatible only with Windows!
 
 ***
 
