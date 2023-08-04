@@ -15,7 +15,7 @@ go build .
 ```
 
 ## Screnshots
-<img src="https://i.imgur.com/8nJu9Sj.png" width="800">
+<img src="https://i.imgur.com/8nJu9Sj.png" width="600">
 
 
 Michal Hicz
