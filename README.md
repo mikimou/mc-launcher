@@ -2,7 +2,7 @@
 
 ![logo](https://i.imgur.com/ZTLvKhH.png)
 
-## build 
+### build 
 ```
 go build .
 ```
