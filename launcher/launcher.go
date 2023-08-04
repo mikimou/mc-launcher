@@ -61,14 +61,11 @@ func main() {
 	} else {
 		runWin(config.username)
 	}
-
 }
 
 func loadUser() {
-	//file, err := os.Open("launcher.txt")
 	user, err := os.ReadFile("username.txt")
 	if err != nil {
-		//log.Fatal(err)
 		fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" CONFIG "), line.Render("No username setting found!"), check.Render(" OK ")))
 	}
 	if string(user) != "" {
@@ -91,7 +88,6 @@ func setNick() {
 		log.Fatal("zly nick!")
 	}
 	config.username = nick
-	//ff, errs = os.Open("username.txt")
 	err = os.WriteFile("username.txt", []byte(nick), 0644)
 	if err != nil {
 		f, err := os.Create("username.txt")
