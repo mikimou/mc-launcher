@@ -1,0 +1,1 @@
+python -m portablemc --work-dir . --main-dir . start forge:1.20.1 --dry
