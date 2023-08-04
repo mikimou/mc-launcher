@@ -1,5 +1,5 @@
 [
   {
-    "username": "misko_22"
+    username: "misko_22"
   }
 ]

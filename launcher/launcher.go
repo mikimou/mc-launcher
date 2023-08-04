@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -21,7 +21,7 @@ var (
 	special   = lipgloss.AdaptiveColor{Light: "#43BF6D", Dark: "#73F59F"}
 	textc     = lipgloss.Color("#243433")
 
-	Client = &http.Client{Timeout: 10 * time.Second}
+	Client = &http.Client{Timeout: 5 * time.Second}
 
 	t_heading  = lipgloss.NewStyle().Bold(true).Foreground(lipgloss.Color("#7D56F4")).PaddingTop(2).PaddingLeft(4).PaddingBottom(1)
 	t_normal   = lipgloss.NewStyle().Padding(1)
@@ -30,44 +30,58 @@ var (
 	divider    = lipgloss.NewStyle().SetString("•").Padding(0, 1).Foreground(subtle).String()
 	url        = lipgloss.NewStyle().Foreground(special).Render
 	txt_subtle = lipgloss.NewStyle().Foreground(subtle).Render
-	//status     = lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" STATUS "), line.Render("Update check.."), check)
-	stat  = lipgloss.NewStyle().Height(1).Foreground(lipgloss.Color("#D9DCCF")).Background(lipgloss.Color("#107869")).MarginLeft(2).MarginTop(0).MarginBottom(1)
-	line  = lipgloss.NewStyle().SetString(" ").Width(60).Height(1).Foreground(lipgloss.AdaptiveColor{Light: "#43433", Dark: "#C1C6B2"}).Background(lipgloss.AdaptiveColor{Dark: "#353533"}).MarginTop(0).MarginBottom(1)
-	check = lipgloss.NewStyle().Height(1).Foreground(textc).Background(special).MarginRight(2).MarginTop(0).MarginBottom(1)
+	//status     = lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" STATUS "), line.Render("Update check.."), check.Render(" OK "))
+	stat     = lipgloss.NewStyle().Height(1).Foreground(lipgloss.Color("#D9DCCF")).Background(lipgloss.Color("#107869")).MarginLeft(2).MarginTop(0).MarginBottom(1)
+	line     = lipgloss.NewStyle().SetString(" ").Width(60).Height(1).Foreground(lipgloss.AdaptiveColor{Light: "#43433", Dark: "#C1C6B2"}).Background(lipgloss.AdaptiveColor{Dark: "#353533"}).MarginTop(0).MarginBottom(1)
+	check    = lipgloss.NewStyle().Height(1).Foreground(textc).Background(special).MarginRight(2).MarginTop(0).MarginBottom(1)
+	helptext = lipgloss.NewStyle().SetString(" ").Width(60).Height(1).Foreground(lipgloss.AdaptiveColor{Light: "#43433", Dark: "#C1C6B2"}).Background(lipgloss.AdaptiveColor{Dark: "#353533"})
 )
+
+type Config struct {
+	username string
+}
+
+var config Config
 
 func main() {
 	fmt.Println(title.Render("Mikiho custom launcher for moded/enhanced minecraft clients"))
 	fmt.Println(titleDesc.Render("Michal Hicz" + divider + url("https://github.com/mikimou") + divider + txt_subtle("v1.0.0")))
 	checkUpdate("https://api.github.com/repos/mikimou/mc-launcher/releases/latest")
-	o := loadConfig()
-	fmt.Println(o)
-	//setup()
-}
-
-func loadConfig() string {
-	jsonFile, err := os.Open("launcher.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer jsonFile.Close()
-	byteValue, _ := ioutil.ReadAll(jsonFile)
-	var result map[string]string
-	json.Unmarshal([]byte(byteValue), &result)
-	return (result["username"])
-}
-
-func setup() {
-	if runtime.GOOS == "windows" {
-		runWin(setNick())
+	loadConfig()
+	if config.username != "" {
+		fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" CONFIG "), line.Width(50).Render("username: "+config.username+"    change username edit ->"), check.Render(" username.txt ")))
 	} else {
-		//log.Fatal("unsupported os")
-		runUnix(setNick())
+		setNick()
 	}
+
+	if runtime.GOOS != "windows" {
+		log.Fatal("unsupported os")
+	} else {
+		runWin(config.username)
+	}
+
 }
 
-func setNick() (nick string) {
+func loadConfig() {
+	//file, err := os.Open("launcher.txt")
+	file, err := os.ReadFile("username.txt")
+	if err != nil {
+		//log.Fatal(err)
+		fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" CONFIG "), line.Render("No config found"), check.Render(" OK ")))
+	}
+	/*
+		defer file.Close()
+		byteValue, err := io.ReadAll(file)
+		if err != nil {
+		}
+		json.Unmarshal([]byte(byteValue), &config)
+	*/
+	config.username = string(file)
+}
+
+func setNick() {
 	fmt.Print("  Zadaj nick -> ")
+	var nick string
 	n, err := fmt.Scanln(&nick)
 	fmt.Println()
 	if n != 1 {
@@ -76,7 +90,7 @@ func setNick() (nick string) {
 	if err != nil {
 		log.Fatal("zly nick!")
 	}
-	return nick
+	config.username = nick
 }
 
 func checkUpdate(url string) {
@@ -100,7 +114,7 @@ func checkUpdate(url string) {
 		fmt.Println("No response from request")
 	}
 	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 
 	var jsonMap map[string]interface{}
 	json.Unmarshal([]byte(body), &jsonMap)
