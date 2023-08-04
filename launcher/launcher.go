@@ -69,7 +69,7 @@ func loadUser() {
 		fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" CONFIG "), line.Render("No username setting found!"), check.Render(" OK ")))
 	}
 	if string(user) != "" {
-		fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" CONFIG "), lipgloss.JoinHorizontal(lipgloss.Top, lin.Render("nick: "+config.username), lin.Align(lipgloss.Right).PaddingRight(1).PaddingLeft(16).Render("zmen nick ->"), check.Render(" username.txt "))))
+		fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" CONFIG "), lipgloss.JoinHorizontal(lipgloss.Top, lin.Render("nick: "+string(user)), lin.Align(lipgloss.Right).PaddingRight(1).PaddingLeft(16).Render("zmen nick ->"), check.Render(" username.txt "))))
 	} else {
 		setNick()
 	}
@@ -120,12 +120,17 @@ func checkVer() {
 
 func checkUpdate(url string) {
 	fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" STATUS "), line.Render("Update check.."), check.Render(" OK ")))
-
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" STATUS "), line.Render("Ziadny internet!"), check.Render(" ERR ")))
+		}
+	}()
 	resp, err := Client.Get(url)
 	if err != nil {
-		fmt.Println("No response from request")
+		fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" STATUS "), line.Render("Server neodpoveda!"), check.Render(" ERR ")))
 	}
 	defer resp.Body.Close()
+
 	body, err := io.ReadAll(resp.Body)
 
 	var jsonMap map[string]interface{}
