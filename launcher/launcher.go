@@ -53,13 +53,14 @@ func main() {
 		fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" VER "), line.Render("Error loading version"), check.Render(" ERR ")))
 	}
 	checkUpdate("https://api.github.com/repos/mikimou/mc-launcher/releases/latest")
+	time.Sleep(500 * time.Millisecond)
 	loadConfig()
 	if config.username != "" {
-		fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" CONFIG "), lipgloss.JoinHorizontal(lipgloss.Top, lin.Render("nick: "+config.username), lin.Align(lipgloss.Right).PaddingRight(1).PaddingLeft(4).Render("edit to change ->"), check.Render(" username.txt "))))
+		fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" CONFIG "), lipgloss.JoinHorizontal(lipgloss.Top, lin.Render("nick: "+config.username), lin.Align(lipgloss.Right).PaddingRight(1).PaddingLeft(16).Render("zmen nick ->"), check.Render(" username.txt "))))
 	} else {
 		setNick()
 	}
-
+	time.Sleep(1500 * time.Millisecond)
 	if runtime.GOOS != "windows" {
 		log.Fatal("unsupported os")
 	} else {
@@ -130,7 +131,6 @@ func checkVer() {
 
 func checkUpdate(url string) {
 	fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" STATUS "), line.Render("Update check.."), check.Render(" OK ")))
-	time.Sleep(1000 * time.Millisecond)
 
 	resp, err := Client.Get(url)
 	if err != nil {
