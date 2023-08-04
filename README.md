@@ -4,8 +4,8 @@
 
 ## Installation
 ### Windows
-*Download launcher-windows.zip from latest release and run executable or build executable from code.
-Launcher requires other files found only in downloaded zip file.*
+*Download launcher-windows.zip from latest release and run executable or build executable from code.<br>
+Launcher requires other files found only in downloaded zip file.*<br>
 **Building only without files from zip wont start the game!**
 
 ### Other OS
