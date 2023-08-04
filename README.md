@@ -11,7 +11,7 @@ Other oses are not compatible yet.
 
 ## Build 
 ```
-go build .
+go build launcher/launcher.go
 ```
 
 ## Screnshots
