@@ -1,6 +1,6 @@
 # Custom sipmle minecraft launcher
 
-![logo](https://imgur.com/ZTLvKhH)
+![logo](https://imgur.com/a/aDcBE22)
 
 ## build 
 ```
