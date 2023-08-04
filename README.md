@@ -4,3 +4,5 @@
 ```
 go build .
 ```
+
+Michal Hicz
