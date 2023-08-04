@@ -9,6 +9,9 @@ Launcher requires other files found only in downloaded zip file.*
 
 **Building only without files from zip wont start the game!**
 
+[Configuration]
+Change nickname in username.txt file.
+
 ### Other OS
 Other oses are not compatible yet.
 
