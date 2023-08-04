@@ -73,7 +73,7 @@ func loadConfig() {
 	file, err := os.ReadFile("username.txt")
 	if err != nil {
 		//log.Fatal(err)
-		fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" CONFIG "), line.Render("No config found"), check.Render(" OK ")))
+		fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" CONFIG "), line.Render("No config found!"), check.Render(" OK ")))
 	}
 	/*
 		defer file.Close()
@@ -97,21 +97,20 @@ func setNick() {
 		log.Fatal("zly nick!")
 	}
 	config.username = nick
-	var ff *os.File
-	var errs error
-	ff, errs = os.Open("username.txt")
-	if errs != nil {
-		var errz error
-		ff, errz = os.Create("username.txt")
-		if errz != nil {
+	//ff, errs = os.Open("username.txt")
+	err = os.WriteFile("username.txt", []byte(nick), 0644)
+	if err != nil {
+		f, err := os.Create("username.txt")
+		if err != nil {
 			fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" CONFIG "), line.Render("Saving config error.."), check.Render(" ERR ")))
 		}
-	}
-	var err2 error
-	_, err2 = ff.WriteString(nick)
-	if err2 != nil {
-		fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" CONFIG "), line.Render("Username not saved!"), check.Render(" ERR ")))
-		//log.Fatal(err)
+		defer f.Close()
+		nbytes, err := f.WriteString(nick)
+		if err != nil {
+			fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" CONFIG "), line.Render("Username not saved!"), check.Render(" ERR ")))
+			if nbytes == 0 {
+			}
+		}
 	}
 }
 
