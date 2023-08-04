@@ -1,6 +1,7 @@
 # Custom sipmle minecraft launcher
 
 ![logo](https://i.imgur.com/ZTLvKhH.png)
+<img src="https://your-image-url.type" width="300">
 
 ## Installation
 ### Windows
