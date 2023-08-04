@@ -1,7 +1,6 @@
 # Custom sipmle minecraft launcher
 
 ![logo](https://i.imgur.com/ZTLvKhH.png)
-<img src="https://your-image-url.type" width="300">
 
 ## Installation
 ### Windows
@@ -16,6 +15,7 @@ go build .
 ```
 
 ## Screnshots
-![screen](https://i.imgur.com/8nJu9Sj.png|width=200px)
+<img src="https://i.imgur.com/8nJu9Sj.png" width="300">
+
 
 Michal Hicz
