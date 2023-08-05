@@ -24,7 +24,7 @@ go-winres patch launcher.exe
 ```
 Get minecraft files:
 
-[](./getMinecraftFiles.txt)
+![](./getMinecraftFiles.txt)
 
 ## Screenshots
 <img src="https://i.imgur.com/8nJu9Sj.png" width="500">
