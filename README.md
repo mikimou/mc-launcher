@@ -22,9 +22,13 @@ go build launcher/launcher.go
 ```
 go-winres patch launcher.exe
 ```
-Get minecraft files:
 
-![](getMinecraftFiles.txt)
+###Get minecraft files
+
+```
+python -m portablemc --work-dir . --main-dir . start forge:<version> --dry
+```
+
 
 ## Screenshots
 <img src="https://i.imgur.com/8nJu9Sj.png" width="500">
