@@ -11,7 +11,8 @@
 Other oses are not compatible yet.
 
 ## Configuration
-Change nickname in username.txt file.
+On first start launcher will generate `username.txt` file to store prompted nickname.
+To change nickname edit generated `username.txt` file.
 
 ## Build 
 ```
