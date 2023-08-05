@@ -4,7 +4,7 @@
 
 ## Installation
 ### Windows
-*Download launcher-windows.zip from latest release and run executable or build executable from code.
+*Download latest `launcher-windows.zip` from releases and run executable or build executable from code.
 Launcher requires other files found only in downloaded zip file.*
 
 **Building only without files from zip wont start the game!**
@@ -25,7 +25,7 @@ go-winres patch launcher.exe
 
 ## Screenshots
 <img src="https://i.imgur.com/8nJu9Sj.png" width="600">
-Screenshot from MacOS but launcher compatible only with Windows!
+Screenshot from MacOS but launcher is still compatible only with Windows!
 
 ***
 
