@@ -5,7 +5,7 @@
 ## Installation
 ### Windows
 *Download latest `launcher-windows.zip` from releases and run executable or build executable from code.
-**Launcher requires minecraft files to run!***
+**If you are building from code your need to get minecraft files manually to be aable to run client!***
 
 ### Other OS
 Other oses are not compatible yet.
