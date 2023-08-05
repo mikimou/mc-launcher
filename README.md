@@ -31,7 +31,7 @@ python -m portablemc --work-dir . --main-dir . start forge:<version> --dry
 
 ## Screenshots
 <img src="https://i.imgur.com/8nJu9Sj.png" width="500">
-Screenshot from MacOS but launcher is still compatible only with Windows!
+Screenshot from MacOS, but the launcher is still only compatible with Windows!
 
 ***
 
