@@ -25,9 +25,9 @@ go-winres patch launcher.exe
 ### Get minecraft files
 
 ```
-python -m portablemc --work-dir . --main-dir . start forge:<version> --dry
+python -m portablemc --work-dir . --main-dir . start <version> --dry
 ```
-
+Replace `<version>` with `1.20` or `forge:1.20-46.0.14`.
 
 ## Screenshots
 <img src="https://i.imgur.com/8nJu9Sj.png" width="500">
