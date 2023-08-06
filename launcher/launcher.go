@@ -184,4 +184,33 @@ func runWin(nick string) {
 }
 
 func runUnix(nick string) {
+	comm, err := os.ReadFile("launcher.command")
+	if err != nil {
+		fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" RUN "), line.Render("Chyba v spustaci, preinstaluj alebo stiahni novu verziu!"), check.Render(" ERR ")))
+		time.Sleep(4000 * time.Millisecond)
+	}
+	if comm != nil {
+		javaPath, err := exec.LookPath("java")
+		if err != nil {
+			fmt.Print("  Zadaj umiestnenie javy (full path) -> ")
+			n, err := fmt.Scanln(&javaPath)
+			fmt.Println()
+			if n != 1 {
+				log.Fatal("zla cesta!")
+				javaPath = "java"
+			}
+			if err != nil {
+				log.Fatal("zla cesta!")
+				javaPath = "java"
+			}
+		}
+
+		args := strings.Split(strings.Replace(string(comm), "replaceme", nick, 1), " ")
+		args[0] = javaPath
+		go exec.Command(args[0], args[1:]...).Output()
+		time.Sleep(6000 * time.Millisecond)
+	} else {
+		fmt.Println(lipgloss.JoinHorizontal(lipgloss.Top, stat.Render(" RUN "), line.Render("Chyba v spustaci, preinstaluj alebo stiahni novu verziu!"), check.Render(" ERR ")))
+		time.Sleep(4000 * time.Millisecond)
+	}
 }
